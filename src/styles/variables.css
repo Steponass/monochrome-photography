@@ -1,0 +1,77 @@
+:root {
+/* FONTS ARE IN FONTS.CSS */
+
+/* -- Colors ----- */
+
+  --clr-primary: hsl(174, 96%, 36%);
+  --clr-primary-alt: hsl(174, 96%, 26%);
+  --clr-bg: hsl(174, 8%, 11%);
+  --clr-stroke-weak: hsl(174, 7%, 22%);
+  --clr-stroke-strong: hsl(174, 5%, 30%);
+  --clr-white: hsl(174, 3%, 99%);
+  --clr-blackish: hsl(0, 0%, 2%);
+  --clr-error: hsl(0, 76%, 62%);
+
+
+/* SPACING, RADII */
+  --space-4px: 4px;
+  --space-8px: 8px;
+  --space-12px: 12px;
+  --space-16px: 16px;
+  --space-24px: 24px;
+  --space-32px: 32px;
+  --space-48px: 48px;
+  --space-64px: 64px;
+  --space-96px: 96px;
+
+/* Fluid Spacing: https://utopia.fyi/space/calculator/?c=360,16,1.25,1920,16,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --space-4-8px: clamp(4px, 2.4348px + 0.4348vw, 8px);
+  --space-8-12px: clamp(8px, 6.4348px + 0.4348vw, 12px);
+  --space-12-16px: clamp(12px, 10.4348px + 0.4348vw, 16px);
+  --space-16-24px: clamp(16px, 12.8696px + 0.8696vw, 24px);
+  --space-24-32px: clamp(24px, 20.8696px + 0.8696vw, 32px);
+  --space-32-48px: clamp(32px, 25.7391px + 1.7391vw, 48px);
+  --space-48-64px: clamp(48px, 41.7391px + 1.7391vw, 64px);
+  --space-64-96px: clamp(64px, 51.4783px + 3.4783vw, 96px);
+
+
+/* BORDER RADII */
+  --radius-3px: 3px;
+  --radius-5px: 5px;
+  --radius-8px: 8px;
+
+
+/* -- Shadows  ---- */
+
+  --box-shadow-1: 0px 1px 5px 3px hsla(0, 0%, 0%, 0.3),
+    0px 1px 4px 1px rgba(0, 0, 0, 0.6);
+
+  /* Was footer, tbd if needed */
+  --box-shadow-2: 0px -5px 10px -2px hsla(0, 0%, 0%, 0.1), 0px -1px 3px -1px hsla(0, 0%, 0%, 0.1);
+
+  /* Seems most commonly used */
+  --box-shadow-5: 0px 1px 0px 0px rgba(0, 0, 0, 0.7), 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+  /* Used for buying-and-features-items */
+  --box-shadow-inset: inset -2px -2px 30px -20px hsl(174, 8%, 11%);
+
+
+/* Transitions */
+
+--transition-1: all 0.4s cubic-bezier(0.976, 0.071, 0.6, 0.911);
+--transition-2: all 0.2s cubic-bezier(0.976, 0.071, 0.6, 0.911);
+}
+
+/* Keyframes */
+
+@keyframes nav-focus-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+

@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'Cormorant SC Medium';
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/CormorantSC-Medium-Subset-Latin-Ext.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Adjusted Heading Fallback';
+    src: local(Arial);
+    size-adjust: 104%;
+    ascent-override: 85%;
+    descent-override: normal;
+    line-gap-override: 9%;
+}
+
+@font-face {
+  font-family: 'DM Sans Variable';
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/DMSans-VF-Subset-Latin-Ext.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'Adjusted Body Fallback';
+    src: local(Arial);
+    size-adjust: 91%;
+    ascent-override: normal;
+    descent-override: 14%;
+    line-gap-override: 39%;
+}
+
+:root {
+  /* https://utopia.fyi/type/calculator/?c=360,16,1.125,1280,16,1.333,6,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+  --fontsize-h1: clamp(2.0273rem, 0.6253rem + 6.2312vw, 5.6102rem);
+  --fontsize-h2: clamp(1.802rem, 0.8603rem + 4.1856vw, 4.2087rem);
+  --fontsize-h3: clamp(1.6018rem, 0.9931rem + 2.7053vw, 3.1573rem);
+  --fontsize-h4: clamp(1.4238rem, 1.0541rem + 1.6431vw, 2.3686rem);
+  --fontsize-h5: clamp(1.2656rem, 1.0656rem + 0.8892vw, 1.7769rem);
+  --fontsize-h6: clamp(1.125rem, 1.0436rem + 0.3617vw, 1.333rem);
+  --fontsize-body: 1rem;
+  --fontsize-body-s: clamp(0.7502rem, 0.9432rem + -0.2412vw, 0.8889rem);
+}
+
+:where(span) {font-size: var(--fontsize-s)}
+:where(p) {font-size: var(--fontsize-p)}
+:where(h6) {font-size: var(--fontsize-h6)}
+:where(h5) {font-size: var(--fontsize-h5)}
+:where(h4) {font-size: var(--fontsize-h4)}
+:where(h3) {font-size: var(--fontsize-h3)}
+:where(h2) {font-size: var(--fontsize-h2)}
+:where(h1) {font-size: var(--fontsize-h1)}
+
+:where(h6, h5, h4, h3, h2, h1) {
+  font-family: 'Cormorant SC Medium', 'Adjusted Heading Fallback', sans-serif;
+  font-weight: 500;
+  color: var(--clr-white);
+}
+
+:where(p, ul, ol, li, a, span, button, label, input, textarea, select, summary, dd, dt) {
+  font-size: var(--fontsize-p);
+  font-family: 'DM Sans Variable', 'Adjusted Body Fallback',sans-serif;
+  font-weight: 500;
+  color: var(--clr-white);
+}
+
+:where(h6, h5, h4, h3, h2, h1, button, input, label) {
+  line-height: 1.2;
+}
+
+:where(p, li) {
+  line-height: 1.5;
+}

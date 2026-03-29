@@ -1,0 +1,16 @@
+a {
+&:focus-visible {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 1px;
+  border-radius: var(--radius-3px);
+}
+&:active {
+  color: var(--clr-primary);
+}
+}
+
+@media (hover:hover) {
+  a:hover {
+    color: var(--clr-primary);
+}
+}
