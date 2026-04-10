@@ -1,0 +1,82 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<dialog id={id} class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <slot />
+  </div>
+</dialog>
+
+<style>
+  .modal {
+    justify-self: center;
+    align-self: center;
+    background: var(--clr-stroke-weak);
+    border: 1px solid var(--clr-stroke-strong);
+    border-radius: var(--radius-8px);
+    width: min(98%, 720px);
+    filter: blur(0);
+    transition: var(--transition-2);
+    @starting-style {
+    filter: blur(10px);
+    }
+  }
+
+  .modal::backdrop {
+    background: var(--clr-backdrop);
+  }
+
+  .modal-inner {
+    position: relative;
+    padding: var(--space-32-48px);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: var(--space-12px);
+    right: var(--space-16px);
+    background: none;
+    border: none;
+    color: var(--clr-white);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: var(--space-4px);
+    transition: color var(--transition-2);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--clr-primary);
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-modal-open]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const modalId = (trigger as HTMLElement).dataset.modalOpen!;
+      const modal = document.getElementById(modalId) as HTMLDialogElement;
+      modal.showModal();
+    });
+  });
+
+  document.querySelectorAll(".modal .modal-close").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      (btn.closest("dialog") as HTMLDialogElement).close();
+    });
+  });
+
+  document.querySelectorAll("dialog.modal").forEach((dialog) => {
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) {
+        (dialog as HTMLDialogElement).close();
+      }
+    });
+  });
+</script>

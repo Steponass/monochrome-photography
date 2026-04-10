@@ -1,0 +1,113 @@
+---
+import Modal from "./Modal.astro";
+---
+
+<Modal id="sizes-modal">
+  <div class="size-chart">
+    <div class="size-frame-large">
+      <div class="size-description">
+        <p>PHOTO SIZE*</p>
+        <p>75.0 &times; 50.0 cm</p>
+        <p class="separator">or</p>
+        <p>70.0 &times; 52.5 cm</p>
+      </div>
+    </div>
+    <div class="size-frame-medium">
+      <div class="size-description">
+        <p>PHOTO SIZE*</p>
+        <p>60.0 &times; 40.0 cm</p>
+        <p class="separator">or</p>
+        <p>60.0 &times; 45.0 cm</p>
+      </div>
+    </div>
+    <div class="size-frame-small">
+      <div class="size-description">
+        <p>PHOTO SIZE*</p>
+        <p>45.0 &times; 30.0 cm</p>
+        <p class="separator">or</p>
+        <p>50.0 &times; 37.5 cm</p>
+      </div>
+    </div>
+  </div>
+  <div class="size-chart-note">
+    <p>
+      Additional sizes may be available. Use the contact form or <a
+        href="mailto:info@monochrome-photography.com">email</a
+      > to enquire.
+    </p>
+    <p>*Photos are usually printed with 5cm borders.</p>
+  </div>
+</Modal>
+
+<style>
+  .size-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: var(--space-16-24px);
+    padding-block-end: var(--space-24-32px);
+  }
+
+  .size-frame-large,
+  .size-frame-medium,
+  .size-frame-small {
+    border: 1px solid var(--clr-stroke-strong);
+    border-radius: var(--radius-3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 2;
+  }
+
+  .size-frame-large {
+    width: 260px;
+  }
+
+  .size-frame-medium {
+    width: 200px;
+  }
+
+  .size-frame-small {
+    width: 140px;
+  }
+
+  .size-description {
+    text-align: center;
+    font-size: var(--fontsize-body-small);
+    line-height: 1.6;
+
+    p:first-child {
+      font-family: var(--font-heading);
+      font-size: var(--fontsize-h6);
+      margin-block-end: var(--space-4px);
+    }
+
+    .separator {
+      color: var(--clr-stroke-strong);
+      font-size: 0.75rem;
+    }
+  }
+
+  .size-chart-note {
+    border-top: 1px solid var(--clr-stroke-weak);
+    padding-block-start: var(--space-16-24px);
+    font-size: var(--fontsize-body-small);
+    color: var(--clr-stroke-strong);
+
+    p:not(:last-child) {
+      margin-block-end: var(--space-4px);
+    }
+
+    a {
+      color: var(--clr-stroke-strong);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.3s ease;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--clr-white);
+      }
+    }
+  }
+</style>

@@ -20,6 +20,7 @@ html {
   text-size-adjust: none;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -39,6 +40,11 @@ svg {
 
 img::after {
   content: "The image didn’t load";
+}
+
+/* As per client's request */
+img {
+  user-select: none;
 }
 
 p,

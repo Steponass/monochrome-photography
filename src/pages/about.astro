@@ -1,0 +1,212 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AwardsModal from "../components/AwardsModal.astro";
+---
+
+<Layout title="About the Artist">
+  <main>
+    <h1>about the artist</h1>
+
+    <div class="tabs">
+      <input
+        type="radio"
+        name="about-tab"
+        id="tab-bio"
+        checked
+        class="tab-input"
+      />
+      <label for="tab-bio" class="tab-label">bio</label>
+
+      <input
+        type="radio"
+        name="about-tab"
+        id="tab-awards"
+        checked
+        class="tab-input"
+      />
+      <label for="tab-awards" class="tab-label">awards</label>
+
+      <input type="radio" name="about-tab" id="tab-style" class="tab-input" />
+      <label for="tab-style" class="tab-label">style</label>
+
+      <input
+        type="radio"
+        name="about-tab"
+        id="tab-equipment"
+        class="tab-input"
+      />
+      <label for="tab-equipment" class="tab-label">equipment</label>
+
+      <div class="tab-panels">
+        <div class="tab-panel panel-bio" id="panel-bio">
+          <p>
+            Jasminas Gabrielius Braticius captures moments through the lens,
+            born and raised in the picturesque landscapes of Lithuania, with
+            Bosnian roots enriching his perspective. Based in London, UK, he
+            weaves a visual tapestry that reflects the intersection of diverse
+            cultural influences.
+          </p>
+          <p>
+            Beyond photography, Gabrielius nurtures a passion for painting and
+            art restoration, exploring various facets of the creative realm.
+            This multidimensional approach infuses their work with a unique
+            blend of sensitivity and artistic depth.
+          </p>
+        </div>
+
+        <div class="tab-panel panel-awards" id="panel-awards">
+          <p>
+            Gabrielius has garnered notable recognition for his exceptional body
+            of work, earning accolades and awards that underscore his artistic
+            prowess. You can view <button class="awards-link" data-modal-open="awards-modal"
+              >a comprehensive list of his achievements, accolades, and honors</button
+            >.
+          </p>
+        </div>
+
+        <div class="tab-panel panel-style" id="panel-style">
+            <p class="artist-profile-frame-3-first-paragraph">&ldquo;I shoot in monochrome because color lies. It flatters things that don't deserve it. Strip it away and you find out fast whether there's anything worth looking at.
+            </p>
+            <p>The biggest influence on my work is Northern and Flemish Baroque painting, where everything that matters is lit. Some elements of expressionism infuse my photography as I aim to incite contemplation and challenge viewers to confront discomfort.</p>
+            <p>Each photograph is composed to convey specific emotions or sensations, sometimes even veering into the bombastic.</p>
+            <p>I'm not interested in pretty. I want the image to hit first and explain itself later. Or not at all.&rdquo;</p>
+        </div>
+
+        <div class="tab-panel panel-equipment" id="panel-equipment">
+          <p>
+            Gabrielius uses Canon 5DS R + Zeiss Otus 1.4/55 and Fujifilm GFX 50R
+            + GF63mm F2.8 R WR cameras.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+<AwardsModal />
+
+</Layout>
+
+<style>
+  main {
+    max-width: 946px;
+    margin-inline: auto;
+    padding-block-end: var(--space-32-48px);
+    h1 {
+      font-size: var(--fontsize-h4);
+      margin-block-start: var(--space-64-96px);
+      margin-block-end: var(--space-24-32px);
+      text-align: center;
+    }
+  }
+
+  /* --- Tab inputs (visually hidden, but focusable) --- */
+
+  .tab-input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* ---- Tab labels ---- */
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-16-24px);
+  }
+
+  .tab-label {
+    cursor: pointer;
+    padding: var(--space-4px) var(--space-8px);
+    font-family: var(--font-heading);
+    font-size: var(--fontsize-h5);
+  }
+
+  /* ---- Active tab label ---- */
+
+  #tab-bio:checked ~ [for="tab-bio"],
+  #tab-awards:checked ~ [for="tab-awards"],
+  #tab-style:checked ~ [for="tab-style"],
+  #tab-equipment:checked ~ [for="tab-equipment"] {
+    color: var(--clr-primary);
+  }
+
+  .tab-panels {
+    width: 100%;
+    margin-block-start: var(--space-24-32px);
+    display: grid;
+  }
+
+  .tab-panel {
+    grid-area: 1 / 1;
+    padding: 48px;
+    width: min(96%, 592px);
+    height: fit-content;
+    min-height: 264px;
+    margin-inline: auto;
+    border-radius: var(--radius-3px);
+    /* inactive by default */
+    visibility: hidden;
+    opacity: 0;
+    p:not(:last-child) {
+      margin-block-end: var(--space-12px);
+    }
+  }
+
+  /* ---- Active panel ---- */
+
+  #tab-bio:checked ~ .tab-panels #panel-bio,
+  #tab-awards:checked ~ .tab-panels #panel-awards,
+  #tab-style:checked ~ .tab-panels #panel-style,
+  #tab-equipment:checked ~ .tab-panels #panel-equipment {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .panel-bio {
+    background:
+      linear-gradient(rgba(7, 8, 8, 0.9), rgba(7, 8, 8, 0.88)),
+      url("/photos/about/UR078d.webp") center / cover no-repeat;
+  }
+
+  .panel-awards {
+    background:
+      linear-gradient(rgba(7, 8, 8, 0.92), rgba(7, 8, 8, 0.92)),
+      url("/photos/about/UR045d.webp") bottom center / cover no-repeat;
+  }
+
+  .panel-style {
+    background:
+      linear-gradient(rgba(7, 8, 8, 0.92), rgba(7, 8, 8, 0.92)),
+      url("/photos/about/UR081d.webp") center / cover no-repeat;
+  }
+
+  .panel-equipment {
+    background:
+      linear-gradient(rgba(7, 8, 8, 0.92), rgba(7, 8, 8, 0.92)),
+      url("/photos/about/IN048f.webp") bottom center / cover no-repeat;
+  }
+
+  /* ---- Panel-specific styles ---- */
+
+  .awards-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--clr-white);
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--clr-stroke-strong);
+    }
+  }
+
+  .opening-quote {
+    text-indent: -0.4rem;
+  }
+</style>

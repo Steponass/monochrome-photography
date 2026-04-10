@@ -1,0 +1,67 @@
+<a class="scroll-to-top" href="#" aria-label="Scroll to top">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      stroke-width="1.5"
+      fill="none"
+      d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"
+    ></path>
+  </svg>
+</a>
+
+<script>
+  const button = document.querySelector<HTMLElement>('.scroll-to-top');
+
+  function updateVisibility() {
+    const hasScrolled = window.scrollY > 300;
+    button?.classList.toggle('is-visible', hasScrolled);
+  }
+
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+  updateVisibility();
+</script>
+
+<style>
+  .scroll-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 36px;
+    color: var(--clr-primary);
+    background-color: var(--clr-stroke-weak);
+    border-radius: var(--radius-8px);
+    padding: 14px 10px;
+    box-shadow: var(--box-shadow-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* z-index: 1; */
+  }
+
+  .scroll-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  @media (hover: hover) {
+    .scroll-to-top:hover {
+      background-color: var(--clr-stroke-weak);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .scroll-to-top {
+      right: 12px;
+      bottom: var(--space-64px);
+    }
+  }
+</style>

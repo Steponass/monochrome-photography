@@ -1,6 +1,9 @@
 :root {
 /* FONTS ARE IN FONTS.CSS */
 
+  --font-heading: 'Cormorant SC Medium', 'Adjusted Heading Fallback', sans-serif;
+  --font-body: 'DM Sans Variable', 'Adjusted Body Fallback', sans-serif;
+
 /* -- Colors ----- */
 
   --clr-primary: hsl(174, 96%, 36%);
@@ -11,6 +14,8 @@
   --clr-white: hsl(174, 3%, 99%);
   --clr-blackish: hsl(0, 0%, 2%);
   --clr-error: hsl(0, 76%, 62%);
+  --clr-backdrop: hsla(174, 5%, 2%, 0.8);
+  --clr-faq-text-bg: hsla(174, 5%, 2%, 0.3);
 
 
 /* SPACING, RADII */
@@ -25,14 +30,27 @@
   --space-96px: 96px;
 
 /* Fluid Spacing: https://utopia.fyi/space/calculator/?c=360,16,1.25,1920,16,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  --space-4-8px: clamp(4px, 2.4348px + 0.4348vw, 8px);
+  /* --space-4-8px: clamp(4px, 2.4348px + 0.4348vw, 8px);
   --space-8-12px: clamp(8px, 6.4348px + 0.4348vw, 12px);
   --space-12-16px: clamp(12px, 10.4348px + 0.4348vw, 16px);
   --space-16-24px: clamp(16px, 12.8696px + 0.8696vw, 24px);
   --space-24-32px: clamp(24px, 20.8696px + 0.8696vw, 32px);
   --space-32-48px: clamp(32px, 25.7391px + 1.7391vw, 48px);
   --space-48-64px: clamp(48px, 41.7391px + 1.7391vw, 64px);
-  --space-64-96px: clamp(64px, 51.4783px + 3.4783vw, 96px);
+  --space-64-96px: clamp(64px, 51.4783px + 3.4783vw, 96px); */
+
+
+  /* TESTING NEW SPACE SCALE */
+  /* https://utopia.fyi/space/calculator?c=360,16,1.2,1280,18,1.414,6,1,&s=0.75%7C0.5%7C0.25,1.5%7C2%7C3%7C4%7C6,s-l&g=s,l,xl,12 */
+
+  --space-4-8px: clamp(4px, 2.0435px + 0.5435vw, 9px);
+  --space-8-12px: clamp(8px, 5.6522px + 0.6522vw, 14px);
+  --space-12-16px: clamp(12px, 9.6522px + 0.6522vw, 18px);
+  --space-16-24px: clamp(16px, 11.6957px + 1.1957vw, 27px);
+  --space-24-32px: clamp(24px, 19.3043px + 1.3043vw, 36px);
+  --space-32-48px: clamp(32px, 23.3913px + 2.3913vw, 54px);
+  --space-48-64px: clamp(48px, 38.6087px + 2.6087vw, 72px);
+  --space-64-96px: clamp(64px, 46.7826px + 4.7826vw, 108px);
 
 
 /* BORDER RADII */
@@ -54,6 +72,7 @@
   /* Used for buying-and-features-items */
   --box-shadow-inset: inset -2px -2px 30px -20px hsl(174, 8%, 11%);
 
+  --box-shadow-faq-text: 0 2px 10px var(--clr-backdrop);
 
 /* Transitions */
 

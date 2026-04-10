@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const images = [
+  { src: '/photos/memorial/ME014f_Large_Solitary_Nexus_I.avif', alt: 'A stone cross covered in vines', title: 'Solitary Nexus I' },
+  { src: '/photos/memorial/ME030c_Large_Still_Water.avif', alt: 'A giant statue of a horse head', title: 'Still Water' },
+  { src: '/photos/memorial/ME025d_Large_Victoria_Memorial.avif', alt: 'Victoria Memorial in the dark', title: 'Victoria Memorial' },
+  { src: '/photos/memorial/ME054d_Large_Stones_II.avif', alt: 'Stonehenge', title: 'Stones II' },
+  { src: '/photos/memorial/ME053d_Large_Stones_I.avif', alt: 'Stonehenge from afar', title: 'Stones I' },
+  { src: '/photos/memorial/ME043f_Large_Highgate_Cemetery_I.avif', alt: 'An angel statue with trees behind it', title: 'Highgate Cemetery I' },
+  { src: '/photos/memorial/ME047d_Large_Lands_End_I.avif', alt: 'A garbage bin in Land\'s End', title: 'Land\'s End I' },
+  { src: '/photos/memorial/ME052d_Large_Rope_lace.avif', alt: 'Hanging rope tied around a piece of wood', title: 'Rope Lace' },
+  { src: '/photos/memorial/ME037d_Large_Bikes_in_the_Sky.avif', alt: 'Part of an arch made of bicycles', title: 'Bikes in the Sky' },
+  { src: '/photos/memorial/ME051b_Large_Glasgow_Necropolis_IV.avif', alt: 'A graveyard shot in color', title: 'Glasgow Necropolis IV' },
+  { src: '/photos/memorial/ME019b_Large_Lady_Macbeth_(Tragedy).avif', alt: 'A statue of a distressed-looking woman', title: 'Lady Macbeth (Tragedy)' },
+  { src: '/photos/memorial/ME018b_Large_Falstaff_(Comedy).avif', alt: 'A statue of a man holding up his finger', title: 'Falstaff (Comedy)' },
+  { src: '/photos/memorial/ME020b_Large_Hamlet_(Philosophy).avif', alt: 'A statue of a man looking at a skull', title: 'Hamlet (Philosophy)' },
+  { src: '/photos/memorial/ME017b_Large_St_Paul\'s_II.avif', alt: 'A wall decoration from St Paul\'s Cathedral', title: 'St Paul\'s II' },
+  { src: '/photos/memorial/ME033f_Large_Les_Trois_Ombres.avif', alt: 'A statue of three persons leaning against one another', title: 'Les Trois Ombres' },
+  { src: '/photos/memorial/ME001b_Large_Viridis.avif', alt: 'A stone angel shot in color', title: 'Viridis' },
+  { src: '/photos/memorial/ME046f_Large_The_Queen.avif', alt: 'A monument of Queen Victoria', title: 'The Queen' },
+  { src: '/photos/memorial/ME036f_Large_The_Look_II.avif', alt: 'A stone angel holding flowers', title: 'The Look II' },
+  { src: '/photos/memorial/ME008b_Large_The_Chain_beyond_which_I\'m_lying_II.avif', alt: 'A close-up of a ring in a fence chain', title: 'The Chain Beyond Which I\'m Lying II' },
+  { src: '/photos/memorial/ME007b_Large_The_Chain_beyond_which_I\'m_lying_I.avif', alt: 'A close-up of a fence chain', title: 'The Chain Beyond Which I\'m Lying I' },
+  { src: '/photos/memorial/ME005b_Large_Patina_I.avif', alt: 'A fence covered in rust', title: 'Patina I' },
+  { src: '/photos/memorial/ME042b_Large_Pink_was_here!.avif', alt: 'Handmade logo of Pink Floyd', title: 'Pink Was Here!' },
+  { src: '/photos/memorial/ME010b_Large_Webbed.avif', alt: 'A metal post in front of a stairway', title: 'Webbed' },
+  { src: '/photos/memorial/ME039f_Large_Lightopia_I.avif', alt: 'An art installation of huge hands holding flowers', title: 'Lightopia I' },
+  { src: '/photos/memorial/ME040f02_Large_Lightopia_II.avif', alt: 'An art installation of a peacock', title: 'Lightopia II' },
+
+];
+---
+
+<Layout title="Nature Photography">
+  <div class="photo-page-title-container">
+  <h1 class="photo-page-title">Memorial</h1>
+  </div>
+  <GalleryGrid images={images} pattern="3-2" />
+  <Lightbox />
+</Layout>

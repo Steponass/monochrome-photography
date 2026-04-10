@@ -1,0 +1,40 @@
+---
+import Modal from "./Modal.astro";
+import { AWARDS } from "../data/awards";
+---
+
+<Modal id="awards-modal">
+  <ul class="awards-list">
+    {
+      AWARDS.map((award) => (
+        <li>
+          <span class="award-icon">{award.icon}</span>
+          {award.text}
+        </li>
+      ))
+    }
+  </ul>
+</Modal>
+
+<style>
+  .awards-list {
+    width: 100%;
+    list-style: none;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8px);
+    padding-inline-end: var(--space-8px);
+    scrollbar-color: var(--clr-primary) transparent;
+
+    li {
+      font-size: var(--fontsize-body-small);
+      line-height: 1.5;
+    }
+
+    .award-icon {
+      margin-inline-end: var(--space-4px);
+    }
+  }
+</style>

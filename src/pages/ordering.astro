@@ -1,0 +1,470 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SizesModal from "../components/SizesModal.astro";
+---
+
+<Layout title="Ordering and FAQs">
+  <main>
+    <section>
+      <div class="photo-page-title-container">
+        <h1>Each print you order…</h1>
+      </div>
+      <div class="print-features">
+        <div class="print-features-item">
+          <p>Includes a certificate of authenticity</p>
+          <svg
+            class="feature-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="28"
+            viewBox="0 0 32 28"
+            fill="none"
+          >
+            <path
+              d="M27 0H5C2.23858 0 0 2.23858 0 5.00001V18.2071C0 20.2507 1.24362 22.0886 3.14064 22.8485L14.1406 27.2551C15.3341 27.7332 16.6659 27.7332 17.8594 27.2551L28.8594 22.8485C30.7564 22.0886 32 20.2507 32 18.2071V5C32 2.23858 29.7614 0 27 0Z"
+              fill="#038276"></path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              viewBox="0 0 448 512"
+              x="9"
+              y="5"
+            >
+              <path
+                fill="#ffffff"
+                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+              ></path>
+            </svg>
+          </svg>
+        </div>
+
+        <div class="print-features-item">
+          <p>Signed at the front or back</p>
+          <svg
+            class="feature-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="28"
+            viewBox="0 0 32 28"
+            fill="none"
+          >
+            <path
+              d="M27 0H5C2.23858 0 0 2.23858 0 5.00001V18.2071C0 20.2507 1.24362 22.0886 3.14064 22.8485L14.1406 27.2551C15.3341 27.7332 16.6659 27.7332 17.8594 27.2551L28.8594 22.8485C30.7564 22.0886 32 20.2507 32 18.2071V5C32 2.23858 29.7614 0 27 0Z"
+              fill="#038276"></path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              viewBox="0 0 448 512"
+              x="9"
+              y="5"
+            >
+              <path
+                fill="#ffffff"
+                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+              ></path>
+            </svg>
+          </svg>
+        </div>
+
+        <div class="print-features-item">
+          <p>Limited to 12 prints per size</p>
+          <svg
+            class="feature-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="28"
+            viewBox="0 0 32 28"
+            fill="none"
+          >
+            <path
+              d="M27 0H5C2.23858 0 0 2.23858 0 5.00001V18.2071C0 20.2507 1.24362 22.0886 3.14064 22.8485L14.1406 27.2551C15.3341 27.7332 16.6659 27.7332 17.8594 27.2551L28.8594 22.8485C30.7564 22.0886 32 20.2507 32 18.2071V5C32 2.23858 29.7614 0 27 0Z"
+              fill="#038276"></path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              viewBox="0 0 448 512"
+              x="9"
+              y="5"
+            >
+              <path
+                fill="#ffffff"
+                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+              ></path>
+            </svg>
+          </svg>
+        </div>
+      </div>
+    </section>
+    <section class="faq-contact-section">
+      <div class="faq-contact-title-container">
+        <h1>FAQs</h1>
+      </div>
+      <div class="faq-accordion">
+        <details name="faq-accordion">
+          <summary>What are the available sizes for the prints?</summary>
+          <p>The prints come in <button class="inline-trigger" data-modal-open="sizes-modal">3 sizes</button>.</p>
+        </details>
+        <details name="faq-accordion">
+          <summary>How will my order be packaged?</summary>
+          <p>
+            The prints are encased in a dual-postage tube, and shielded with
+            bubble wrap for added protection.
+          </p>
+        </details>
+        <details name="faq-accordion">
+          <summary>How will my order be shipped?</summary>
+          <p>
+            We ship from the UK using the Royal Mail Tracked & Signed service.
+            You will receive an email with the tracking link once your order is
+            shipped.
+          </p>
+        </details>
+        <details name="faq-accordion">
+          <summary>What's the average delivery time?</summary>
+          <p>
+            All photographs require up to 2 weeks to be printed. The shipping
+            usually takes 4-5 business days for domestic and 8-12 for
+            international shipments.
+          </p>
+        </details>
+        <details name="faq-accordion">
+          <summary>What's the return policy?</summary>
+          <p>
+            You will be refunded the full amount minus the printing costs (a
+            flat £80 fee) and shipping fees.
+          </p>
+        </details>
+        <details name="faq-accordion">
+          <summary>How are the photographs printed?</summary>
+          <p>
+            All photographs are printed at 300 ppi resolution on 320gsm
+            Hahnemuehle Photo Rag Pearl paper (100% cotton) by an accredited
+            Fine Art printer.
+          </p>
+          <p>
+            Please note that slight variations in colors, hues, and tones may
+            arise due to photographic lighting sources and/or your screen
+            settings and calibration.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="faq-contact-section">
+      <div class="faq-contact-title-container">
+        <h1>Contact Form</h1>
+      </div>
+      <form id="contact-form">
+        <label for="form-message" id="label-message">Message</label>
+        <textarea id="form-message" name="message" rows="4" cols="50" required
+        ></textarea>
+        <label for="form-fullname" id="label-fullname">Name</label>
+        <input type="text" id="form-fullname" name="user_name" required />
+        <label for="form-email" id="label-email">Email</label>
+        <input type="email" id="form-email" name="user_email" required />
+        <button type="submit" name="submit">Send</button>
+      </form>
+    </section>
+    <SizesModal />
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: min(100%, 1024px);
+    margin-inline: auto;
+  }
+
+  section {
+    margin-block: var(--space-48-64px);
+  }
+
+  .print-features {
+    display: flex;
+    place-content: center;
+    flex-wrap: nowrap;
+    gap: var(--space-32-48px);
+    @media (max-width: 784px) {
+      flex-direction: column;
+    }
+  }
+
+  .print-features-item {
+    position: relative;
+    aspect-ratio: 1.5/1;
+    padding: var(--space-16-24px);
+    border-radius: var(--radius-3px);
+    flex: 1;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    p {
+      font-size: var(--fontsize-h6);
+    }
+  }
+
+  .print-features-item:nth-child(1) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.8), hsla(180, 7%, 3%, 0.8)),
+      url("photos/info/UR030c.webp") top center/cover no-repeat;
+  }
+
+  .print-features-item:nth-child(2) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.8), hsla(180, 7%, 3%, 0.8)),
+      url("photos/info/UR014b.webp") center center/cover no-repeat;
+  }
+
+  .print-features-item:nth-child(3) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.89), hsla(180, 7%, 3%, 0.89)),
+      url("photos/info/IN015b.webp") center center/cover no-repeat;
+  }
+
+  .feature-icon {
+    position: absolute;
+    top: -3%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    filter: drop-shadow(0px 1px 2px hsla(174, 96%, 26%, 0.3));
+  }
+
+  .faq-contact-section {
+    display: flex;
+    @media (max-width: 784px) {
+      flex-direction: column;
+    }
+  }
+
+  .faq-contact-title-container {
+    display: flex;
+    align-items: center;
+    flex: 2;
+    h1 {
+      font-size: var(--fontsize-h4);
+    }
+  }
+
+  .faq-accordion {
+    flex: 3;
+  }
+
+  details {
+    width: 100%;
+    padding-inline: var(--space-12-16px);
+    margin-block: var(--space-4px);
+    border-radius: var(--radius-5px);
+    font-size: var(--fontsize-h6);
+    transition:
+      filter 0.3s ease,
+      color 0.3s ease;
+    &:hover {
+      filter: brightness(1.3);
+      color: var(--clr-primary-alt);
+    }
+  }
+
+  details p {
+    /* background-color: var(--clr-faq-text-bg);
+    border-radius: var(--radius-3px); */
+    text-shadow: var(--box-shadow-faq-text);
+  }
+
+  details:nth-child(1) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.6), hsla(180, 7%, 3%, 0.6)),
+      url("photos/info/UR072d-1-of-6.webp") top center/cover no-repeat;
+  }
+
+  details:nth-child(2) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.6), hsla(180, 7%, 3%, 0.6)),
+      url("photos/info/UR072d-2-of-6.webp") top center/cover no-repeat;
+  }
+  details:nth-child(3) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.6), hsla(180, 7%, 3%, 0.6)),
+      url("photos/info/UR072d-3-of-6.webp") top center/cover no-repeat;
+  }
+  details:nth-child(4) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.6), hsla(180, 7%, 3%, 0.6)),
+      url("photos/info/UR072d-4-of-6.webp") top center/cover no-repeat;
+  }
+  details:nth-child(5) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.6), hsla(180, 7%, 3%, 0.6)),
+      url("photos/info/UR072d-5-of-6.webp") top center/cover no-repeat;
+  }
+  details:nth-child(6) {
+    background:
+      linear-gradient(hsla(180, 7%, 3%, 0.6), hsla(180, 7%, 3%, 0.6)),
+      url("photos/info/UR072d-6-of-6.webp") center center/cover no-repeat;
+  }
+
+  summary {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    min-height: var(--space-64px);
+  }
+
+  ::details-content {
+    transition: height 0.5s ease;
+    height: 0;
+    overflow: clip;
+  }
+
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+
+    [open]::details-content {
+      height: auto;
+    }
+  }
+
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    label {
+      margin-block-start: var(--space-16px);
+      margin-block-end: var(--space-8px);
+    }
+    input, textarea {
+      padding: var(--space-12px);
+      border-radius: var(--radius-5px);
+      border: none;
+      &:hover {
+        filter: brightness(1.25);
+      }
+    }
+  }
+
+#form-message {
+  min-height: 154px;
+  background: linear-gradient(hsla(174, 7%, 22%, 0.99), hsla(174, 7%, 22%, 0.99)), url('photos/info/UR061e-Top.webp') center center/cover no-repeat;
+  resize: none;
+}
+
+#form-fullname {
+  background: linear-gradient(hsla(174, 7%, 22%, 0.99), hsla(174, 7%, 22%, 0.99)), url('photos/info/UR061e-Middle.webp') center center/cover no-repeat;
+}
+
+#form-email {
+  background: linear-gradient(hsla(174, 7%, 22%, 0.99), hsla(174, 7%, 22%, 0.99)), url('photos/info/UR061e-Bottom.webp') center center/cover no-repeat;
+}
+
+/* ---- Inline modal trigger (looks like a link) ---- */
+
+.inline-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--clr-white);
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--clr-primary);
+  }
+}
+
+button[type="submit"] {
+  max-width: 128px;
+  margin-top: var(--space-16px);
+  padding-block: var(--space-12px);
+  padding-inline: var(--space-8px);
+  background-color: var(--clr-primary-alt);
+  color: var(--clr-white);
+  border: none;
+  border-radius: var(--radius-5px);
+}
+</style>
+
+<script>
+  import emailjs from "@emailjs/browser";
+
+  emailjs.init({ publicKey: "zm7kbNe71XnqS9G97" });
+
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const submitButton = this.querySelector(
+      'button[type="submit"]'
+    ) as HTMLButtonElement;
+
+    // Remove any existing messages
+    const existingMessage = submitButton.parentNode?.querySelector("p");
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+
+    // Get form data for validation
+    const formData = new FormData(this);
+    const email = (formData.get("user_email") as string) ?? "";
+    const message = (formData.get("message") as string) ?? "";
+
+    function showMessage(text: string, isError: boolean) {
+      const messageEl = document.createElement("p");
+      messageEl.style.marginLeft = "1rem";
+      messageEl.style.color = isError ? "#E85454" : "hsl(var(--clr-primary))";
+      messageEl.textContent = text;
+      submitButton.parentNode?.appendChild(messageEl);
+    }
+
+    if (!email.trim()) {
+      showMessage("Please enter your email address", true);
+      return;
+    }
+
+    if (!message.trim()) {
+      showMessage("Please enter a message", true);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showMessage("Please enter a valid email address", true);
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.style.opacity = "0.7";
+    submitButton.style.cursor = "not-allowed";
+    submitButton.textContent = "Sending";
+
+    Promise.all([
+      emailjs.sendForm("service_v67b0hf", "template_kv6eqri", this),
+      emailjs.sendForm("service_v67b0hf", "template_j1bmhvh", this),
+    ])
+      .then(() => {
+        submitButton.textContent = "Sent";
+        showMessage("You will receive a confirmation email", false);
+        this.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+
+        submitButton.disabled = false;
+        submitButton.style.opacity = "1";
+        submitButton.style.cursor = "pointer";
+        submitButton.textContent = "Send";
+
+        showMessage("Could not send. Please try again.", true);
+      });
+  });
+</script>

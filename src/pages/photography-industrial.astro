@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const images = [
+  { src: '/photos/industrial/IN034e_Large_Missing_the_Pig.avif', alt: 'Battersea Power Station from a low angle', title: 'Missing the Pig' },
+  { src: '/photos/industrial/IN050d_Large_Golden_Jubilee_Bridge.avif', alt: 'Golden Jubilee Bridge', title: 'Golden Jubilee Bridge' },
+  { src: '/photos/industrial/IN025d_Large_Under_Construction_(Big_Ben).avif', alt: 'Big Ben under construction', title: 'Under Construction (Big Ben)' },
+  { src: '/photos/industrial/IN022d_Large_Battersea_Power_Station.avif', alt: 'Battersea Power Station from a distance', title: 'Battersea Power Station' },
+  { src: '/photos/industrial/IN031d_Large_Flood_Sentinels.avif', alt: 'Thames Barrier', title: 'Flood Sentinels' },
+  { src: '/photos/industrial/IN055f_Large_Atomium_III.avif', alt: 'Atomium sculpture in Belgium from below', title: 'Atomium III' },
+  { src: '/photos/industrial/IN060f_Large_1854.avif', alt: 'Girdered ceiling of an industrial building', title: '1854' },
+  { src: '/photos/industrial/IN056f_Large_Atomium_IV.avif', alt: 'Atomium sculpture in Belgium from the side', title: 'Atomium IV' },
+  { src: '/photos/industrial/IN023d_Large_Abstraction_IV.avif', alt: 'Abstract bubbles in the dark', title: 'Abstraction IV' },
+  { src: '/photos/industrial/IN049d_Large_Wembley_I.avif', alt: 'An arch of Wembley Arena', title: 'Wembley I' },
+  { src: '/photos/industrial/IN043d_Large_4am_(Kings_Cross).avif', alt: 'King\'s Cross station clocktower', title: '4am (King\'s Cross)' },
+  { src: '/photos/industrial/IN058b04_Large_Inside_the_Sphere.avif', alt: 'A red atomic shape', title: 'Inside the Sphere' },
+  { src: '/photos/industrial/IN037f_Large_Lloyds_of_London_II.avif', alt: 'Lloyd\'s of London building', title: 'Lloyd\'s of London II' },
+  { src: '/photos/industrial/IN044f_Large_St_Pancras_Int._I.avif', alt: 'Entrance of St. Pancras Station', title: 'St Pancras Int. I' },
+  { src: '/photos/industrial/IN040d_Large_Underground.avif', alt: 'A London Tube sign', title: 'Underground' },
+  { src: '/photos/industrial/IN052f_Large_Wembley_II.avif', alt: 'Metal structure in Wembley', title: 'Wembley II' },
+  { src: '/photos/industrial/IN032e_Large_Industrial_Sunset_II.avif', alt: 'Disused train wheel', title: 'Industrial Sunset II' },
+  { src: '/photos/industrial/IN047e_Large_Industrial_II.avif', alt: 'Side of the Pompidou Museum in Paris', title: 'Industrial II' },
+  { src: '/photos/industrial/IN045f_Large_St_Pancras_Int._II.avif', alt: 'Area outside of St. Pancras Station', title: 'St Pancras Int. II' },
+  { src: '/photos/industrial/IN042f_Large_Centre_Pompidou.avif', alt: 'Exterior of Pompidou centre in Paris', title: 'Centre Pompidou' },
+  { src: '/photos/industrial/IN036e_Large_Industrial_I.avif', alt: 'Decorative pipes in Pompidou, Paris', title: 'Industrial I' },
+  { src: '/photos/industrial/IN059c_Large_For_your_safety_and_security.avif', alt: 'CCTV camera hanging from a post', title: 'For Your Safety and Security' },
+  { src: '/photos/industrial/IN038e_Razor_Palms.avif', alt: 'A barbed top of a fence', title: 'Razor Palms' },
+  { src: '/photos/industrial/IN046f_Large_Gare_Du_Nord.avif', alt: 'Gare du Nord in Paris', title: 'Gare Du Nord' },
+  { src: '/photos/industrial/IN051e02_Large_West_Pier.avif', alt: 'A disused pier shot in sepia color', title: 'West Pier' },
+  { src: '/photos/industrial/IN035e_Large_Lloyds_of_London.avif', alt: 'Modern building in the City', title: 'Lloyd\'s of London' },
+  { src: '/photos/industrial/IN021b_Large_Echo_of_the_War.avif', alt: 'A string of barbed wire on a black background', title: 'Echo of the War' },
+  { src: '/photos/industrial/IN030d_Large_Industrial_Sunset_I.avif', alt: 'An old train wheel', title: 'Industrial Sunset I' },
+  { src: '/photos/industrial/IN026b_Large_Less_is_More.avif', alt: 'A large needle', title: 'Less is More' },
+  { src: '/photos/industrial/IN024d_Large_Abstraction_V.avif', alt: 'An extremely close-up of a grater', title: 'Abstraction V' },
+];
+---
+
+<Layout title="Industrial Photography">
+  <div class="photo-page-title-container">
+  <h1 class="photo-page-title">Industrial</h1>
+  </div>
+  <GalleryGrid images={images} pattern="3-2" />
+  <Lightbox />
+</Layout>
