@@ -2,24 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import GalleryGrid from '../components/GalleryGrid.astro';
 import Lightbox from '../components/Lightbox.astro';
+import { getCollection } from 'astro:content';
 
-const images = [
-  { src: '/photos/nature/NA020d_Large_All_is_quiet_on_New_Years_Day.avif', alt: 'A lone cut down tree in a white space', title: 'All is quiet on New Year\'s Day' },
-  { src: '/photos/nature/NA011b_Large_Remembrance_I.avif', alt: 'A walnut cut in half', title: 'Remembrance I' },
-  { src: '/photos/nature/NA026e_Large_Late_Spring_Blossom_II.avif', alt: 'A tall plant with numerous blossoms', title: 'Late Spring Blossom II' },
-  { src: '/photos/nature/NA028e_Large_Pine_Cones_Majority.avif', alt: 'Pine cones', title: 'Pine Cone Majority' },
-  { src: '/photos/nature/NA021d_Large_Alien_I.avif', alt: 'A bizarre-looking seashell', title: 'Alien I' },
-  { src: '/photos/nature/NA012b_Large_Orchids_Caterpillar.avif', alt: 'String of orchids', title: 'Orchids\' Caterpillar' },
-  { src: '/photos/nature/NA013b_Small_Remembrance_II.avif', alt: 'A walnut lit from below', title: 'Remembrance II' },
-  { src: '/photos/nature/NA006b_Large_Fossil_Dream.avif', alt: 'A fossil of a seahorse', title: 'Fossil Dream' },
-  { src: '/photos/nature/NA004b_Large_Abduction_of_the_pine_cone.avif', alt: 'A pine cone lit from above', title: 'Abduction of the Pine Cone' },
-  { src: '/photos/nature/NA008b_Large_Quasimodos_wooden_mask.avif', alt: 'Piece of wood shaped like a mask', title: 'Quasimodo\'s Wooden Mask' },
-  { src: '/photos/nature/NA029d_Large_Lands_End_II.avif', alt: 'Cliffs at the seaside', title: 'Land\'s End II' },
-  { src: '/photos/nature/NA030d_Large_Trossachs_Sky.avif', alt: 'Cloudy sky in sepia color', title: 'Trossach\'s Sky' },
-  { src: '/photos/nature/NA014c_Large_Richmond_Park_I.avif', alt: 'Lonely bench in a park', title: 'Richmond Park I' },
-  { src: '/photos/nature/NA024d_Large_Overused.avif', alt: 'Feet with a morgue tag', title: 'Overused' },
-  { src: '/photos/nature/NA023d_Large_The_Edge_of_Tranquility.avif', alt: 'A sheet of rough paper on a black background', title: 'The Edge of Tranquility' },
-];
+const products = await getCollection('products', ({ data }) => {
+  return data.category === 'nature';
+});
+
+products.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const images = products.map(({ data }) => ({
+  image: data.image,
+  alt: data.alt,
+  title: data.title,
+}));
 ---
 
 <Layout title="Nature Photography">

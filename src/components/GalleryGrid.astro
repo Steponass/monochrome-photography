@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface GalleryImage {
-  src: string;
+  image: ImageMetadata;
   alt: string;
   title: string;
 }
@@ -12,23 +14,40 @@ interface Props {
 }
 
 const { images, pattern = '2-3' } = Astro.props;
+
+/**
+ * The lightbox runs in client-side JS and needs plain URL strings.
+ * define:vars can only serialize simple data — not ImageMetadata objects.
+ * So we build a separate array with just the resolved .src URLs.
+ */
+const lightboxImages = images.map(({ image, alt, title }) => ({
+  src: image.src,
+  alt,
+  title,
+}));
 ---
 
 <div class:list={['gallery-grid', `gallery-grid--${pattern}`]}>
-  {images.map((image, index) => (
+  {images.map(({ image, alt, title }, index) => (
     <button
       class="gallery-item"
       type="button"
       data-index={index}
-      aria-label={`View enlarged: ${image.alt}`}
+      aria-label={`View enlarged: ${alt}`}
     >
-      <img src={image.src} alt={image.alt} loading="lazy" />
-      <span class="gallery-item-title">{image.title}</span>
+      <Image 
+      src={image} 
+      alt={alt} 
+      loading="lazy"
+      widths={[400, 800, 1200]}
+      sizes="(max-width: 440px) 100vw, (max-width: 1024px) 50vw, 33vw"
+   />
+      <span class="gallery-item-title">{title}</span>
     </button>
   ))}
 </div>
 
-<script define:vars={{ images }}>
+<script define:vars={{ lightboxImages }}>
   const grid = document.querySelector('.gallery-grid');
 
   grid.addEventListener('click', (event) => {
@@ -39,7 +58,7 @@ const { images, pattern = '2-3' } = Astro.props;
 
     document.dispatchEvent(
       new CustomEvent('lightbox:open', {
-        detail: { images, startIndex },
+        detail: { images: lightboxImages, startIndex },
       })
     );
   });
@@ -132,8 +151,8 @@ const { images, pattern = '2-3' } = Astro.props;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: var(--space-8px);
-    background: var(--clr-bg);
+    padding: var(--space-12px);
+    background: var(--clr-backdrop);
     text-align: center;
     opacity: 0;
     transition: var(--transition-2);

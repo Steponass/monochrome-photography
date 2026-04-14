@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { SIZE_TIERS } from '../../config/sizeTiers.js';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+
+  return products.map((product) => ({
+    params: { slug: product.data.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { title, image, alt, aspectRatio } = product.data;
+---
+
+<Layout title={`${title} — Print`}>
+  <article class="product-detail">
+    <div class="product-image-container">
+      <Image
+        src={image}
+        alt={alt}
+        class="product-image"
+        loading="eager"
+        widths={[600, 1000, 1600]}
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+    </div>
+
+    <div class="product-info">
+      <h1 class="product-title">{title}</h1>
+
+      <div class="size-tiers">
+        <h2 class="size-tiers-heading">Available sizes</h2>
+        <ul class="size-tiers-list" role="list">
+          {SIZE_TIERS.map((tier) => (
+            <li class="size-tier">
+              <span class="size-tier-dimensions">
+                {tier.dimensions[aspectRatio]}
+              </span>
+              <span class="size-tier-price">€{tier.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p class="product-edition">Limited edition of 23</p>
+
+      <!-- Phase 3: AddToCart Svelte island goes here -->
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .product-detail {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-12-16px);
+    padding-block: var(--space-64-96px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-64-96px);
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .product-detail {
+      grid-template-columns: 1fr;
+      gap: var(--space-24-32px);
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-5px);
+  }
+
+  .product-title {
+    font-size: var(--fontsize-h2);
+    margin-block-end: var(--space-24-32px);
+  }
+
+  .size-tiers {
+    margin-block-end: var(--space-24-32px);
+  }
+
+  .size-tiers-heading {
+    font-size: var(--fontsize-h5);
+    margin-block-end: var(--space-12-16px);
+  }
+
+  .size-tiers-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8px);
+  }
+
+  .size-tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-12-16px);
+    border: 1px solid var(--color-stroke-weak);
+    border-radius: var(--radius-5);
+  }
+</style>

@@ -2,54 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import GalleryGrid from '../components/GalleryGrid.astro';
 import Lightbox from '../components/Lightbox.astro';
+import { getCollection } from 'astro:content';
 
-const images = [
-  { src: '/photos/urban/UR043d_Large_O2_I.avif', alt: 'O2 Arena from a distance', title: 'O2 I' },
-  { src: '/photos/urban/UR020c_Large_Palace_of_Westminster_I.avif', alt: 'Palace of Westminster at night', title: 'Palace of Westminster I' },
-  { src: '/photos/urban/UR039d_Large_Palace_of_Westminster_II.avif', alt: 'The tower of Palace of Westminster', title: 'Palace of Westminster II' },
-  { src: '/photos/urban/UR018c_Large_The_Lion_and_the_Unicorn.avif', alt: 'An ornamental stone facade', title: 'The Lion and the Unicorn' },
-  { src: '/photos/urban/UR024d_Large_Metropolis.avif', alt: 'A tall imposing building', title: 'Metropolis' },
-  { src: '/photos/urban/UR010b_Large_The_last_sitting.avif', alt: 'A park bench', title: 'The Last Sitting' },
-  { src: '/photos/urban/UR015b_Large_Cobble_Vista.avif', alt: 'Cobbled pavement', title: 'Cobble Vista' },
-  { src: '/photos/urban/UR040d_Large_Westminster_Abbey_III.avif', alt: 'Westminster Abbey viewed from the side', title: 'Westminster Abbey III' },
-  { src: '/photos/urban/UR025b_Large_City_Lights.avif', alt: 'Stacks of green glass', title: 'City Lights' },
-  { src: '/photos/urban/UR041d_Large_Peace_Pagoda.avif', alt: 'A peace pagoda in London', title: 'Peace Pagoda' },
-  { src: '/photos/urban/UR044d_Large_O2_II.avif', alt: 'O2 Arena in London', title: 'O2 II' },
-  { src: '/photos/urban/UR052d_Large_Tower_of_London.avif', alt: 'Tower of London at night', title: 'Tower of London' },
-  { src: '/photos/urban/UR042d_Large_Old_Clippers_Dream_(Cutty_Sark).avif', alt: 'Cutty Sark ship from a front-side angle', title: 'Old Clipper\'s Dream (Cutty Sark)' },
-  { src: '/photos/urban/UR019c_Large_Sticks.avif', alt: 'A loose hedge made of sticks', title: 'Sticks' },
-  { src: '/photos/urban/UR036d_Large_Burlington_Arcade.avif', alt: 'An empty arcade at night', title: 'Burlington Arcade' },
-  { src: '/photos/urban/UR037d_Large_St_Pauls_Cathedral.avif', alt: 'St Paul\'s Cathedral at night', title: 'St Paul\'s Cathedral' },
-  { src: '/photos/urban/UR056f_Large_Tower_Bridge_II.avif', alt: 'Tower Bridge', title: 'Tower Bridge II' },
-  { src: '/photos/urban/UR065f_Large_Picadilly_Arcade.avif', alt: 'A closed arcade', title: 'Picadilly Arcade' },
-  { src: '/photos/urban/UR077b03_Large_Sitting_in_a_bunker.avif', alt: 'Large revolving doors, tinted in red', title: 'Sitting in a Bunker...' },
-  { src: '/photos/urban/UR062f_Large_Caviar_House_London.avif', alt: 'Entrance to Caviar House in London', title: 'Caviar House London' },
-  { src: '/photos/urban/UR063e_Large_V&A.avif', alt: 'Entrance of Victoria & Albert Museum', title: 'V&A' },
-  { src: '/photos/urban/UR027b_Large_Admiralty_Arch.avif', alt: 'Admiralty Arch in Whitehall', title: 'Admiralty Arch' },
-  { src: '/photos/urban/UR074d_Large_Methodist_Central_Hall.avif', alt: 'A large church shot from a distance', title: 'Methodist Central Hall' },
-  { src: '/photos/urban/UR076d_Small_The_Town_Hall_(Brussels).avif', alt: 'The tower of Brussels\' Town Hall', title: 'The Town Hall (Brussels)' },
-  { src: '/photos/urban/UR028d_Large_Canada_Gate.avif', alt: 'Canada Gate in the dark', title: 'Canada Gate' },
-  { src: '/photos/urban/UR007b_Large_Patina_II.avif', alt: 'A hedge with an old lock', title: 'Patina II' },
-  { src: '/photos/urban/UR021c_Large_Out_of_Order.avif', alt: 'A row of telephone booths leaning against one another', title: 'Out of Order' },
-  { src: '/photos/urban/UR009f_Large_You_may_enter.avif', alt: 'An old arch with the gates ajar', title: 'You May Enter' },
-  { src: '/photos/urban/UR070d_Large_Pyramide_du_Louvre.avif', alt: 'The Louvre pyramid', title: 'Pyramide du Louvre' },
-  { src: '/photos/urban/UR011d_Large_What_Remains_I.avif', alt: 'Ruins of an arched entrance', title: 'What Remains I' },
-  { src: '/photos/urban/UR026c_Large_Royal_Albert_Hall_II.avif', alt: 'Top part of Royal Albert Hall', title: 'Royal Albert Hall II' },
-  { src: '/photos/urban/UR033d_Large_MI5.avif', alt: 'An arch with elaborate ornaments', title: 'MI5' },
-  { src: '/photos/urban/UR031d_Large_Westminster_Abbey_I.avif', alt: 'Side of Westminster Abbey, London', title: 'Westminster Abbey I' },
-  { src: '/photos/urban/UR054f_Large_Leadenhall_Market.avif', alt: 'Leadenhall Market ceiling', title: 'Leadenhall Market' },
-  { src: '/photos/urban/UR048d_Large_45_Park_Lane.avif', alt: 'A rounded corner of a building', title: '45 Park Lane' },
-  { src: '/photos/urban/UR035d_Large_Regent_Street_(out_of_the_dark).avif', alt: 'An angel decoration in Regent Street', title: 'Regent Street (Out of the Dark)' },
-  { src: '/photos/urban/UR68d_Large_In_a_row.avif', alt: 'A row of columns shot in sepia', title: 'In a Row' },
-  { src: '/photos/urban/UR071f_Large_Illumination_I.avif', alt: 'A tree with each branch covered in lights', title: 'Illumination I' },
-  { src: '/photos/urban/UR013b_Large_PianoDrum.avif', alt: 'Distorted piano keys', title: 'PianoDrum' },
-  { src: '/photos/urban/UR023c_Large_Royal_Albert_Hall_I.avif', alt: 'Side of Royal Albert Hall', title: 'Royal Albert Hall I' },
-  { src: '/photos/urban/UR066e_Large_The_Churchill_Arms.avif', alt: 'A pub covered in Christmas lights', title: 'The Churchill Arms' },
-  { src: '/photos/urban/UR050d_Large_Nautical_Strings.avif', alt: 'The masts of Cutty Sark ship in London', title: 'Nautical Strings' },
-  { src: '/photos/urban/UR032d_Large_Westminster_Abbey_II.avif', alt: 'Front of Westminster Abbey', title: 'Westminster Abbey II' },
-  { src: '/photos/urban/UR022c_Large_Post_Office_Sci-Fi.avif', alt: 'A British mail box in the darkness', title: 'Post Office Sci-Fi' },
-  { src: '/photos/urban/UR053d_Large_Tower_Bridge_I.avif', alt: 'Tower Bridge from the side', title: 'Tower Bridge I' },
-];
+const products = await getCollection('products', ({ data }) => {
+  return data.category === 'urban';
+});
+
+products.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const images = products.map(({ data }) => ({
+  image: data.image,
+  alt: data.alt,
+  title: data.title,
+}));
 ---
 
 <Layout title="Urban Photography">

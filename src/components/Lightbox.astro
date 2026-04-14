@@ -7,7 +7,10 @@
     ‹
   </button>
 
-  <img class="lightbox-image" src="" alt="" />
+  <div class="lightbox-media">
+    <img class="lightbox-image" src="" alt="" />
+    <span class="lightbox-image-title"></span>
+  </div>
 
   <button
     class="lightbox-nav lightbox-nav-next"
@@ -26,6 +29,7 @@
   interface LightboxImage {
     src: string;
     alt: string;
+    title: string;
   }
 
   interface LightboxOpenDetail {
@@ -35,6 +39,7 @@
 
   const dialog = document.querySelector('.lightbox') as HTMLDialogElement;
   const image = dialog.querySelector('.lightbox-image') as HTMLImageElement;
+  const imageTitle = dialog.querySelector('.lightbox-image-title') as HTMLSpanElement;
   const closeButton = dialog.querySelector('.lightbox-close') as HTMLButtonElement;
   const prevButton = dialog.querySelector('.lightbox-nav-prev') as HTMLButtonElement;
   const nextButton = dialog.querySelector('.lightbox-nav-next') as HTMLButtonElement;
@@ -48,6 +53,7 @@
     const current = currentImages[currentIndex];
     image.src = current.src;
     image.alt = current.alt;
+    imageTitle.textContent = current.title;
 
     /* Hide nav buttons at the ends rather than wrapping around.
      * Wrapping is disorienting when you don't know how many images exist. */
@@ -60,14 +66,26 @@
   function goToPrevious(): void {
     if (currentIndex > 0) {
       currentIndex -= 1;
-      showCurrentImage();
+      document.documentElement.dataset.lightboxDir = 'prev';
+
+      if ('startViewTransition' in document) {
+        (document as any).startViewTransition(() => showCurrentImage());
+      } else {
+        showCurrentImage();
+      }
     }
   }
 
   function goToNext(): void {
     if (currentIndex < currentImages.length - 1) {
       currentIndex += 1;
-      showCurrentImage();
+      document.documentElement.dataset.lightboxDir = 'next';
+
+      if ('startViewTransition' in document) {
+        (document as any).startViewTransition(() => showCurrentImage());
+      } else {
+        showCurrentImage();
+      }
     }
   }
 
@@ -155,11 +173,31 @@
     background: var(--clr-backdrop);
   }
 
-  .lightbox-image {
+  .lightbox-media {
+    position: relative;
     max-width: 95dvw;
+    max-height: 95dvh;
+    transition: var(--transition-1);
+  }
+
+  .lightbox-image {
+    max-width: 100%;
     max-height: 95dvh;
     object-fit: contain;
     display: block;
+
+  }
+
+  .lightbox-image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-8px);
+    font-size: var(--fontsize-h5);
+    background: var(--clr-backdrop);
+    text-align: center;
+    transition: var(--transition-1);
   }
 
   .lightbox-close {
@@ -197,5 +235,38 @@
 
   .lightbox-nav[hidden] {
     display: none;
+  }
+</style>
+
+<style is:global>
+  /* Directional slide animations for image transitions.
+   * Must be global because ::view-transition-* pseudo-elements
+   * live at the document level and can't be Astro-scoped. */
+
+  :root[data-lightbox-dir="next"]::view-transition-old(lightbox-image) {
+    animation: lightbox-slide-out-left 1.4s ease both;
+  }
+  :root[data-lightbox-dir="next"]::view-transition-new(lightbox-image) {
+    animation: lightbox-slide-in-right 1.4s ease both;
+  }
+
+  :root[data-lightbox-dir="prev"]::view-transition-old(lightbox-image) {
+    animation: lightbox-slide-out-right 1.4s ease both;
+  }
+  :root[data-lightbox-dir="prev"]::view-transition-new(lightbox-image) {
+    animation: lightbox-slide-in-left 1.4s ease both;
+  }
+
+  @keyframes lightbox-slide-out-left {
+    to { transform: translateX(-18%); opacity: 0; }
+  }
+  @keyframes lightbox-slide-in-right {
+    from { transform: translateX(18%); opacity: 0; }
+  }
+  @keyframes lightbox-slide-out-right {
+    to { transform: translateX(18%); opacity: 0; }
+  }
+  @keyframes lightbox-slide-in-left {
+    from { transform: translateX(-18%); opacity: 0; }
   }
 </style>
