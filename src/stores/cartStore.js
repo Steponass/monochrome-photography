@@ -1,6 +1,5 @@
-// src/stores/cartStore.js
-
 import { persistentJSON } from '@nanostores/persistent';
+import { atom } from 'nanostores';
 
 /**
  * Cart store — business logic for the shopping cart.
@@ -20,6 +19,16 @@ const STORAGE_KEY = 'monochrome-cart';
 const MAX_QUANTITY_PER_ITEM = 5;
 
 export const cartItems = persistentJSON(STORAGE_KEY, {});
+
+export const isCartOpen = atom(false);
+
+export function openCart() {
+  isCartOpen.set(true);
+}
+
+export function closeCart() {
+  isCartOpen.set(false);
+}
 
 /* ——— Helpers ——— */
 

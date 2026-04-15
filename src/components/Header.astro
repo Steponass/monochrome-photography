@@ -1,5 +1,5 @@
 ---
-import AddToCart from '../islands/AddToCart.svelte';
+import CartIcon from '../islands/CartIcon.svelte';
 
 ---
 
@@ -62,7 +62,7 @@ import AddToCart from '../islands/AddToCart.svelte';
       ><h1>Monochrome Photography</h1></a
     >
     <nav class="nav-info-wrapper">
-      <AddToCart />
+      <CartIcon client:load />
       <a href="#" class="nav-info">
         <svg
           class="chevron"
