@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Lightbox from '../components/Lightbox.astro';
 
 const images = [
   { src: '/photos/in-situ/In_situ_missing_the_pig.webp', alt: 'Framed photo of the Battersea Power Plant', title: 'Missing the Pig' },
@@ -34,7 +33,6 @@ const images = [
     </div>
   </main>
 
-  <Lightbox />
 </Layout>
 
 <script define:vars={{ images }}>

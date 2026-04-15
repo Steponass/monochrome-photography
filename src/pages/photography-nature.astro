@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GalleryGrid from '../components/GalleryGrid.astro';
-import Lightbox from '../components/Lightbox.astro';
+import ProductLightbox from '../islands/ProductLightbox.svelte';
 import { getCollection } from 'astro:content';
 
 const products = await getCollection('products', ({ data }) => {
@@ -10,10 +10,12 @@ const products = await getCollection('products', ({ data }) => {
 
 products.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 
-const images = products.map(({ data }) => ({
+const galleryProducts = products.map(({ data }) => ({
   image: data.image,
   alt: data.alt,
   title: data.title,
+  slug: data.slug,
+  aspectRatio: data.aspectRatio,
 }));
 ---
 
@@ -21,6 +23,6 @@ const images = products.map(({ data }) => ({
   <div class="photo-page-title-container">
   <h1 class="photo-page-title">Nature</h1>
   </div>
-  <GalleryGrid images={images} pattern="2-3" />
-  <Lightbox />
+  <GalleryGrid products={galleryProducts} pattern="2-3" />
+  <ProductLightbox client:load />
 </Layout>

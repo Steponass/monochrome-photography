@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { SIZE_TIERS } from '../../config/sizeTiers.js';
+import AddToCart from '../../islands/AddToCart.svelte';
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -14,7 +15,8 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
-const { title, image, alt, aspectRatio } = product.data;
+
+const { title, slug, image, alt, aspectRatio } = product.data;
 ---
 
 <Layout title={`${title} — Print`}>
@@ -46,6 +48,13 @@ const { title, image, alt, aspectRatio } = product.data;
           ))}
         </ul>
       </div>
+
+        <AddToCart
+        slug={slug}
+        title={title}
+        aspectRatio={aspectRatio}
+        client:load
+      />
 
       <p class="product-edition">Limited edition of 23</p>
 
