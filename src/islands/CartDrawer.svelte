@@ -8,7 +8,8 @@
     addItemToCart,
     getCartItemCount,
     getCartDisplayTotal,
-  } from '../stores/cartStore.js';
+    createCheckoutSession,
+  } from "../stores/cartStore.js";
 
   let dialog = $state(null);
 
@@ -16,6 +17,8 @@
   const itemCount = $derived(getCartItemCount($cartItems));
   const displayTotal = $derived(getCartDisplayTotal($cartItems));
   const isEmpty = $derived(items.length === 0);
+  let isCheckingOut = $state(false);
+  let checkoutError = $state("");
 
   /* ——— Open/close in sync with the store ——— */
 
@@ -62,6 +65,19 @@
   function handleRemove(item) {
     removeItem(item.productSlug, item.sizeId);
   }
+
+  async function handleCheckout() {
+    isCheckingOut = true;
+    checkoutError = "";
+
+    try {
+      const checkoutUrl = await createCheckoutSession();
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      checkoutError = error.message;
+      isCheckingOut = false;
+    }
+  }
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -75,11 +91,7 @@
   <div class="cart-drawer-panel">
     <div class="cart-header">
       <h2>Your cart ({itemCount})</h2>
-      <button
-        class="cart-close"
-        aria-label="Close cart"
-        onclick={handleClose}
-      >
+      <button class="cart-close" aria-label="Close cart" onclick={handleClose}>
         <strong>✕</strong>
       </button>
     </div>
@@ -90,7 +102,7 @@
       </div>
     {:else}
       <ul class="cart-items" role="list">
-        {#each items as item (item.productSlug + '-' + item.sizeId)}
+        {#each items as item (item.productSlug + "-" + item.sizeId)}
           <li class="cart-item">
             <div class="cart-item-info">
               <span>{item.title}</span>
@@ -122,7 +134,7 @@
               </div>
 
               <span class="cart-item-price">
-                €{item.price * item.quantity}
+                £{item.price * item.quantity}
               </span>
 
               <button
@@ -141,15 +153,21 @@
       <div class="cart-footer">
         <div class="cart-total">
           <span>Total</span>
-          <span>€{displayTotal}</span>
+          <span>£{displayTotal}</span>
         </div>
 
         <button
           class="checkout-button"
           type="button"
+          disabled={isCheckingOut}
+          onclick={handleCheckout}
         >
-          Checkout
+          {isCheckingOut ? "Redirecting…" : "Checkout"}
         </button>
+
+        {#if checkoutError}
+          <p class="checkout-error" role="alert">{checkoutError}</p>
+        {/if}
 
         <p class="checkout-note">
           Shipping included. You'll be redirected to Stripe.
@@ -207,8 +225,6 @@
     }
   }
 
-
-
   /* ——— Header ——— */
 
   .cart-header {
@@ -228,7 +244,7 @@
     color: var(--clr-white);
     transition: color var(--transition-2);
   }
-  
+
   .cart-empty {
     flex: 1;
     display: grid;
@@ -254,9 +270,9 @@
     border-bottom: 1px solid var(--clr-stroke-weak);
   }
 
-.cart-items > * + * {
-  padding-block-start: var(--space-8-12px);
-}
+  .cart-items > * + * {
+    padding-block-start: var(--space-8-12px);
+  }
 
   .cart-item-info {
     display: flex;
@@ -324,7 +340,6 @@
     color: var(--clr-error);
   }
 
-
   .cart-footer {
     padding: var(--space-16-24px);
     border-top: 1px solid var(--clr-stroke-weak);
@@ -351,4 +366,15 @@
   .checkout-note {
     text-align: center;
   }
+
+  .checkout-error {
+  color: var(--clr-error);
+  font-size: var(--fontsize-body-s);
+  text-align: center;
+}
+
+.checkout-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 </style>

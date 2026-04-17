@@ -135,3 +135,43 @@ export function getCartDisplayTotal(items) {
     0
   );
 }
+
+/**
+ * Build the payload the checkout endpoint expects.
+ * Strips display-only fields — sends only what the server needs.
+ */
+function buildCheckoutPayload(currentItems) {
+  return Object.values(currentItems).map((item) => ({
+    productSlug: item.productSlug,
+    sizeId: item.sizeId,
+    quantity: item.quantity,
+  }));
+}
+
+/**
+ * POST cart contents to the checkout endpoint.
+ * Returns the Stripe Checkout URL on success.
+ * Throws an Error with a user-facing message on failure.
+ */
+export async function createCheckoutSession() {
+  const currentItems = cartItems.get();
+  const payload = buildCheckoutPayload(currentItems);
+
+  if (payload.length === 0) {
+    throw new Error('Your cart is empty.');
+  }
+
+  const response = await fetch('/api/create-checkout-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items: payload }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || 'Something went wrong. Please try again.');
+  }
+
+  return data.url;
+}

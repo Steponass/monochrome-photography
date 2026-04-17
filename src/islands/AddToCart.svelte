@@ -56,7 +56,7 @@
         <span class="size-option-dimensions">
           {tier.dimensions[aspectRatio]}
         </span>
-        <span class="size-option-price">€{tier.price}</span>
+        <span class="size-option-price">£{tier.price}</span>
       </button>
     {/each}
   </fieldset>
