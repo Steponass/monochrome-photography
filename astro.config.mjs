@@ -1,20 +1,32 @@
-import { defineConfig, envField } from 'astro/config';
-import svelte from '@astrojs/svelte';
-import cloudflare from '@astrojs/cloudflare';
+import { defineConfig, envField } from "astro/config";
+import svelte from "@astrojs/svelte";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  output: 'static',
+  output: "static",
   adapter: cloudflare(),
   integrations: [svelte()],
   env: {
     schema: {
       STRIPE_SECRET_KEY: envField.string({
-        context: 'server',
-        access: 'secret',
+        context: "server",
+        access: "secret",
+      }),
+      STRIPE_WEBHOOK_SECRET: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      RESEND_API_KEY: envField.string({ 
+        context: "server", 
+        access: "secret" 
+      }),
+      ARTIST_EMAIL: envField.string({ 
+        context: "server", 
+        access: "secret" 
       }),
       SITE_URL: envField.string({
-        context: 'server',
-        access: 'secret',
+        context: "server",
+        access: "secret",
       }),
     },
   },

@@ -25,6 +25,7 @@
     "wrangler": "^4.83.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260417.1",
     "sharp": "^0.34.5"
   },
   "overrides": {
